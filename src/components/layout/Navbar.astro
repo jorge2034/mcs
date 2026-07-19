@@ -1,0 +1,191 @@
+---
+import { Image } from "astro:assets";
+import logoImg from "../../assets/logo2.PNG";
+
+const navLinks = [
+  { href: "/", label: "Inicio" },
+  { href: "/quienes-somos", label: "Quiénes Somos" },
+  { href: "/servicios", label: "Servicios" },
+  { href: "/minerales", label: "Minerales" },
+  { href: "/lme", label: "LME" },
+  { href: "/noticias", label: "Noticias" },
+  { href: "/contacto", label: "Contacto" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center group shrink-0">
+        <Image
+          src={logoImg}
+          alt="Minera La Cordillera del Sur"
+          class="h-48 sm:h-56 w-auto object-contain"
+          widths={[320, 480, 640, 800, 1024, 1280, 1536]}
+          sizes="240px"
+          loading="eager"
+        />
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-1">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                "relative px-4 py-2 text-sm font-medium tracking-wide transition-colors duration-300 group",
+                currentPath === link.href
+                  ? "text-[#C9A84C]"
+                  : "text-white/80 hover:text-white",
+              ]}
+            >
+              {link.label}
+              <span
+                class:list={[
+                  "absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-[#C41230] transition-all duration-300",
+                  currentPath === link.href ? "w-4/5" : "w-0 group-hover:w-4/5",
+                ]}
+              />
+            </a>
+          ))
+        }
+      </nav>
+
+      <!-- CTA + Hamburger -->
+      <div class="flex items-center gap-3">
+        <a
+          href="/contacto"
+          class="hidden lg:inline-flex items-center gap-2 bg-[#C41230] hover:bg-[#E8193F] text-white text-sm font-semibold px-5 py-2.5 rounded transition-all duration-300 hover:shadow-lg hover:shadow-red-900/40"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            ></path>
+          </svg>
+          Solicitar Cotización
+        </a>
+
+        <button
+          id="nav-toggle"
+          type="button"
+          class="lg:hidden text-white p-2 relative w-10 h-10"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg
+            id="icon-open"
+            class="w-6 h-6 absolute inset-0 m-auto"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg
+            id="icon-close"
+            class="w-6 h-6 absolute inset-0 m-auto hidden"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden hidden bg-[#0D0D0D]/98 backdrop-blur-md border-t border-white/10"
+  >
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              "mobile-nav-link px-4 py-3 text-sm font-medium rounded transition-colors",
+              currentPath === link.href
+                ? "bg-[#C41230] text-white"
+                : "text-white/80 hover:bg-white/10 hover:text-white",
+            ]}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href="/contacto"
+        class="mobile-nav-link mt-2 bg-[#C41230] text-white text-sm font-semibold px-4 py-3 rounded text-center"
+      >
+        Solicitar Cotización
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const navbar = document.getElementById("navbar");
+  const toggleBtn = document.getElementById("nav-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const iconOpen = document.getElementById("icon-open");
+  const iconClose = document.getElementById("icon-close");
+
+  let menuOpen = false;
+
+  function setMenuOpen(open: boolean) {
+    menuOpen = open;
+    mobileMenu?.classList.toggle("hidden", !open);
+    iconOpen?.classList.toggle("hidden", open);
+    iconClose?.classList.toggle("hidden", !open);
+    toggleBtn?.setAttribute("aria-expanded", String(open));
+    toggleBtn?.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    document.body.classList.toggle("overflow-hidden", open);
+  }
+
+  toggleBtn?.addEventListener("click", () => setMenuOpen(!menuOpen));
+
+  mobileMenu?.querySelectorAll(".mobile-nav-link").forEach((link) => {
+    link.addEventListener("click", () => setMenuOpen(false));
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 1024 && menuOpen) setMenuOpen(false);
+  });
+
+  window.addEventListener("scroll", () => {
+    if (!navbar) return;
+    const scrolled = window.scrollY > 50;
+    navbar.classList.toggle("bg-[#0D0D0D]/95", scrolled);
+    navbar.classList.toggle("backdrop-blur-md", scrolled);
+    navbar.classList.toggle("shadow-xl", scrolled);
+    navbar.classList.toggle("shadow-black/20", scrolled);
+    navbar.classList.toggle("bg-transparent", !scrolled);
+  });
+</script>

@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LMETable from '../components/vue/LMETable.vue';
+---
+
+<BaseLayout
+  title="Cotizaciones LME"
+  description="Precios actualizados de metales en el London Metal Exchange (LME). Cotizaciones de cobre, aluminio, zinc, plomo, estaño, plata y más."
+>
+  <!-- Hero -->
+  <div class="relative pt-20 bg-[#0D0D0D] overflow-hidden">
+    <div class="absolute inset-0 opacity-20"
+      style="background-image: repeating-linear-gradient(45deg, #C41230 0, #C41230 1px, transparent 0, transparent 40px);">
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div class="flex items-center gap-3 mb-4">
+        <a href="/" class="text-white/40 hover:text-white/70 text-sm transition-colors">Inicio</a>
+        <span class="text-white/30">/</span>
+        <span class="text-[#C9A84C] text-sm">LME</span>
+      </div>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+        Precios <span class="text-[#C41230]">LME</span>
+      </h1>
+      <p class="text-white/60 text-xl max-w-2xl">
+        Cotizaciones de referencia del London Metal Exchange. Información actualizada por nuestro equipo comercial.
+      </p>
+    </div>
+    <div class="h-1 bg-[#C41230]"></div>
+  </div>
+
+  <!-- LME Table (Vue Component) -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <LMETable client:load />
+    </div>
+  </section>
+
+  <!-- Info Box -->
+  <section class="py-12 bg-[#F8F8F8]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-[#1A1A1A] rounded-2xl p-8 text-white">
+        <div class="flex gap-4 items-start">
+          <div class="w-10 h-10 bg-[#C9A84C] rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg mb-2">Sobre los precios LME</h3>
+            <p class="text-white/70 text-sm leading-relaxed">
+              Los precios mostrados son de referencia basados en datos del <strong class="text-white">London Metal Exchange (LME)</strong>, la bolsa de metales más importante del mundo. Los precios se actualizan periódicamente por nuestro equipo comercial mediante carga de archivos Excel desde el panel administrativo. Para cotizaciones exactas y negociaciones, contáctenos directamente.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,63 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+
+// Mock data — replaced by API in production
+const mockPrices = [
+  { symbol: 'Cu', metal: 'Cobre', price: 9847.50, change: 1.23, currency: 'USD/t' },
+  { symbol: 'Al', metal: 'Aluminio', price: 2432.00, change: -0.45, currency: 'USD/t' },
+  { symbol: 'Zn', metal: 'Zinc', price: 2891.75, change: 2.10, currency: 'USD/t' },
+  { symbol: 'Pb', metal: 'Plomo', price: 2105.50, change: -1.80, currency: 'USD/t' },
+  { symbol: 'Sn', metal: 'Estaño', price: 27850.00, change: 0.87, currency: 'USD/t' },
+  { symbol: 'Ag', metal: 'Plata', price: 30.45, change: 3.20, currency: 'USD/oz' },
+];
+---
+
+<section class="py-20 bg-white border-t border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10">
+      <SectionTitle
+        eyebrow="LME"
+        title="Cotizaciones <span class='text-[#C41230]'>en tiempo real</span>"
+        align="left"
+      />
+      <a
+        href="/lme"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-[#C41230] hover:text-[#E8193F] shrink-0"
+      >
+        Ver todas las cotizaciones
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+      {mockPrices.map(p => (
+        <div class="bg-[#F8F8F8] hover:bg-white rounded-xl p-4 border border-transparent hover:border-gray-200 hover:shadow-md transition-all duration-300 group">
+          <div class="flex items-center justify-between mb-3">
+            <span class="w-9 h-9 rounded-lg bg-[#1A1A1A] text-white text-xs font-black flex items-center justify-center">
+              {p.symbol}
+            </span>
+            <span class:list={[
+              'flex items-center gap-0.5 text-xs font-semibold px-2 py-0.5 rounded-full',
+              p.change >= 0
+                ? 'bg-green-100 text-green-700'
+                : 'bg-red-100 text-red-700'
+            ]}>
+              {p.change >= 0 ? '▲' : '▼'} {Math.abs(p.change)}%
+            </span>
+          </div>
+          <div class="text-[#1A1A1A] font-black text-lg leading-none mb-1 group-hover:text-[#C41230] transition-colors">
+            {p.price.toLocaleString('es-BO', { minimumFractionDigits: 2 })}
+          </div>
+          <div class="text-[#718096] text-xs">{p.metal}</div>
+          <div class="text-[#718096] text-[10px] mt-0.5">{p.currency}</div>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-[#718096] text-xs mt-4 text-center">
+      * Precios de referencia LME (London Metal Exchange). Actualización según archivo cargado por el administrador.
+    </p>
+  </div>
+</section>

@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-red-corp: #C41230;
+  --color-red-dark: #8B0D21;
+  --color-red-light: #E8193F;
+  --color-steel: #4A5568;
+  --color-steel-light: #718096;
+  --color-carbon: #1A1A1A;
+  --color-carbon-dark: #0D0D0D;
+  --color-gold: #C9A84C;
+  --color-gold-light: #E4C76B;
+
+  --font-family-sans: 'Montserrat', 'Inter', system-ui, sans-serif;
+  --font-family-display: 'Playfair Display', Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-family-sans);
+    background-color: #ffffff;
+    color: var(--color-carbon);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-family-display);
+  }
+}
+
+@layer components {
+  .bolivia-pattern {
+    opacity: 0.1;
+    background-image:
+      repeating-linear-gradient(0deg, white 0, white 1px, transparent 0, transparent 30px),
+      repeating-linear-gradient(90deg, white 0, white 1px, transparent 0, transparent 30px);
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #C9A84C, #E4C76B, #C9A84C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-hero-pattern {
+    background-image:
+      linear-gradient(to bottom, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.60) 60%, rgba(13,13,13,0.85) 100%);
+  }
+
+  .border-gold {
+    border-color: #C9A84C;
+  }
+
+  .clip-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+  }
+}

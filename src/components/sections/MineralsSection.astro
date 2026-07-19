@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+import SectionTitle from '../ui/SectionTitle.astro';
+import piedrasImg from '../../assets/piedras.avif';
+
+const minerals = [
+  { symbol: 'Ag', name: 'Plata', desc: 'Metal precioso de alta pureza, líder en exportaciones bolivianas.', color: 'from-slate-400 to-slate-600' },
+  { symbol: 'Sn', name: 'Estaño', desc: 'Bolivia posee una de las mayores reservas mundiales de estaño.', color: 'from-zinc-400 to-zinc-600' },
+  { symbol: 'Zn', name: 'Zinc', desc: 'Fundamental para la industria siderúrgica y de galvanización.', color: 'from-blue-400 to-blue-600' },
+  { symbol: 'Pb', name: 'Plomo', desc: 'Ampliamente utilizado en baterías, construcción e industria.', color: 'from-gray-500 to-gray-700' },
+  { symbol: 'Au', name: 'Oro', desc: 'El metal más preciado del mundo, presente en yacimientos andinos.', color: 'from-yellow-400 to-amber-600' },
+  { symbol: 'Sb', name: 'Antimonio', desc: 'Bolivia es el cuarto productor mundial de este mineral estratégico.', color: 'from-orange-400 to-orange-600' },
+  { symbol: 'W', name: 'Wolfram', desc: 'Metal de alta resistencia para aplicaciones industriales avanzadas.', color: 'from-stone-400 to-stone-600' },
+  { symbol: 'Cu', name: 'Cobre', desc: 'Esencial para la industria eléctrica y de telecomunicaciones.', color: 'from-orange-500 to-red-600' },
+];
+---
+
+<section class="py-24 bg-[#0D0D0D] relative overflow-hidden">
+  <!-- Background: mineral stones -->
+  <div class="absolute inset-0">
+    <Image
+      src={piedrasImg}
+      alt=""
+      class="w-full h-full object-cover opacity-20"
+      widths={[640, 1024, 1600]}
+      sizes="100vw"
+      aria-hidden="true"
+    />
+    <div class="absolute inset-0 bg-[#0D0D0D]/75"></div>
+  </div>
+  <!-- Background pattern -->
+  <div class="absolute inset-0 opacity-5"
+    style="background-image: repeating-linear-gradient(0deg, #C9A84C 0, #C9A84C 1px, transparent 0, transparent 40px), repeating-linear-gradient(90deg, #C9A84C 0, #C9A84C 1px, transparent 0, transparent 40px);">
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <SectionTitle
+        eyebrow="Minerales"
+        title="Riqueza mineral <span class='text-gradient-gold'>del subsuelo boliviano</span>"
+        subtitle="Comercializamos los principales minerales que forjaron la historia industrial de Bolivia, con trazabilidad y certificación de calidad."
+        light
+      />
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      {minerals.map(m => (
+        <div class="group relative bg-white/5 hover:bg-white/10 rounded-xl p-6 border border-white/10 hover:border-[#C9A84C]/50 transition-all duration-300 cursor-default overflow-hidden">
+          <!-- Symbol badge -->
+          <div class={`absolute top-3 right-3 w-10 h-10 rounded-lg bg-gradient-to-br ${m.color} flex items-center justify-center text-white font-black text-sm`}>
+            {m.symbol}
+          </div>
+          <div class="mt-2 mb-3">
+            <h3 class="text-white font-bold text-lg group-hover:text-[#C9A84C] transition-colors">
+              {m.name}
+            </h3>
+          </div>
+          <p class="text-white/50 text-xs leading-relaxed group-hover:text-white/70 transition-colors">
+            {m.desc}
+          </p>
+          <!-- Hover glow -->
+          <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+            style="background: radial-gradient(circle at 50% 0%, rgba(201,168,76,0.1) 0%, transparent 70%);">
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-12">
+      <a
+        href="/minerales"
+        class="inline-flex items-center gap-2 border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0D0D0D] font-semibold px-8 py-3 rounded transition-all duration-300 text-sm"
+      >
+        Ver catálogo completo
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

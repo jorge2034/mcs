@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { fetchNewsBySlug } from '../../lib/api';
+
+const { slug } = Astro.params;
+const data = await fetchNewsBySlug(slug!);
+
+if (!data) {
+  return Astro.redirect('/noticias');
+}
+
+const article = {
+  title: data.title,
+  category: (data as any).category?.name ?? '',
+  date: data.published_at ? new Date(data.published_at).toLocaleDateString('es-BO', { day: 'numeric', month: 'long', year: 'numeric' }) : '',
+  author: (data as any).author ?? 'Equipo de Comunicaciones',
+  excerpt: data.excerpt ?? '',
+  content: (data as any).content ?? '',
+  cover: (data as any).cover ?? null,
+  tags: Array.isArray((data as any).tags) ? (data as any).tags : [],
+};
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.excerpt}
+>
+  <!-- Hero -->
+  <div class="relative pt-20 bg-[#0D0D0D]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="flex items-center gap-3 mb-6">
+        <a href="/" class="text-white/40 hover:text-white/70 text-sm transition-colors">Inicio</a>
+        <span class="text-white/30">/</span>
+        <a href="/noticias" class="text-white/40 hover:text-white/70 text-sm transition-colors">Noticias</a>
+        <span class="text-white/30">/</span>
+        <span class="text-[#C9A84C] text-sm">Artículo</span>
+      </div>
+      <span class="inline-block text-xs font-semibold text-[#C41230] bg-[#C41230]/20 px-3 py-1 rounded-full mb-4">
+        {article.category}
+      </span>
+      <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+        {article.title}
+      </h1>
+      <div class="flex items-center gap-4 text-white/50 text-sm">
+        <span>{article.date}</span>
+        <span>·</span>
+        <span>{article.author}</span>
+      </div>
+    </div>
+    <div class="h-1 bg-[#C41230]"></div>
+  </div>
+
+  <!-- Article Content -->
+  <article class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Featured image -->
+      <div class="bg-gradient-to-br from-[#1A1A1A] to-[#2D2D2D] rounded-2xl aspect-video flex items-center justify-center mb-10 overflow-hidden">
+        {article.cover
+          ? <img src={article.cover} alt={article.title} class="w-full h-full object-cover rounded-2xl" />
+          : <svg class="w-16 h-16 text-white/20" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        }
+      </div>
+
+      <!-- Content -->
+      <div
+        class="prose prose-lg max-w-none prose-headings:font-display prose-headings:text-[#1A1A1A] prose-p:text-[#4A5568] prose-p:leading-relaxed prose-li:text-[#4A5568] prose-strong:text-[#1A1A1A] prose-h3:text-xl prose-h3:font-bold"
+        set:html={article.content}
+      />
+
+      <!-- Tags / Share -->
+      <div class="mt-12 pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex flex-wrap gap-2">
+          {(article.tags.length > 0 ? article.tags : ['Minería', 'Bolivia']).map((tag: string) => (
+            <span class="text-xs bg-[#F8F8F8] text-[#4A5568] px-3 py-1 rounded-full">#{tag}</span>
+          ))}
+        </div>
+        <a
+          href="/noticias"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-[#C41230] hover:text-[#E8193F]"
+        >
+          <svg class="w-4 h-4 rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+          </svg>
+          Volver a Noticias
+        </a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

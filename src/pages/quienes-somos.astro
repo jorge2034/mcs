@@ -1,0 +1,209 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionTitle from '../components/ui/SectionTitle.astro';
+
+const timeline = [
+  { year: '2005', title: 'Fundación', desc: 'Nacemos en Oruro con el compromiso de impulsar la minería boliviana con responsabilidad y visión de futuro.' },
+  { year: '2008', title: 'Expansión Comercial', desc: 'Ampliamos nuestra red de clientes industriales en los departamentos mineros de Bolivia.' },
+  { year: '2012', title: 'Certificaciones de Calidad', desc: 'Obtenemos certificaciones internacionales que avalan la calidad de nuestros procesos y productos.' },
+  { year: '2016', title: 'Gestión de Exportaciones', desc: 'Iniciamos operaciones de exportación, conectando la minería boliviana con mercados internacionales.' },
+  { year: '2020', title: 'Tecnología e Innovación', desc: 'Implementamos tecnologías avanzadas de análisis y control de calidad mineral.' },
+  { year: '2025', title: 'Visión de Futuro', desc: 'Consolidamos nuestra posición como referente del comercio mayorista de minerales en Bolivia.' },
+];
+
+const values = [
+  { icon: '🎯', title: 'Excelencia', desc: 'Buscamos la excelencia en cada proceso, producto y relación comercial.' },
+  { icon: '🤝', title: 'Integridad', desc: 'Actuamos con honestidad, transparencia y ética en todos nuestros negocios.' },
+  { icon: '🌿', title: 'Sostenibilidad', desc: 'Comprometidos con la responsabilidad ambiental y el desarrollo sostenible.' },
+  { icon: '💡', title: 'Innovación', desc: 'Adoptamos tecnología y métodos que mejoran continuamente nuestros procesos.' },
+  { icon: '🏔', title: 'Identidad Boliviana', desc: 'Orgullosamente bolivianos, forjados en la tradición minera de Oruro.' },
+  { icon: '👥', title: 'Compromiso Social', desc: 'Generamos desarrollo y bienestar en las comunidades donde operamos.' },
+];
+
+const team = [
+  { name: 'Ing. Roberto Mamani', position: 'Gerente General', initials: 'RM' },
+  { name: 'Lic. Carmen Quispe', position: 'Directora Comercial', initials: 'CQ' },
+  { name: 'Ing. José Flores', position: 'Jefe de Operaciones', initials: 'JF' },
+  { name: 'Ing. Ana Torrez', position: 'Control de Calidad', initials: 'AT' },
+];
+---
+
+<BaseLayout
+  title="Quiénes Somos"
+  description="Conozca la historia, misión, visión y valores de Minera La Cordillera del Sur — forjados en el corazón minero de Oruro, Bolivia."
+>
+  <!-- Page Hero -->
+  <div class="relative pt-20 bg-[#0D0D0D] overflow-hidden">
+    <div class="absolute inset-0 opacity-20"
+      style="background-image: repeating-linear-gradient(45deg, #C41230 0, #C41230 1px, transparent 0, transparent 40px);">
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div class="flex items-center gap-3 mb-4">
+        <a href="/" class="text-white/40 hover:text-white/70 text-sm transition-colors">Inicio</a>
+        <span class="text-white/30">/</span>
+        <span class="text-[#C9A84C] text-sm">Quiénes Somos</span>
+      </div>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+        Nuestra <span class="text-[#C41230]">Historia</span>
+      </h1>
+      <p class="text-white/60 text-xl max-w-2xl">
+        Más de una década forjando la excelencia en el comercio mayorista de minerales desde el corazón de Bolivia.
+      </p>
+    </div>
+    <div class="h-1 bg-[#C41230]"></div>
+  </div>
+
+  <!-- Misión, Visión -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <div class="bg-[#C41230] text-white rounded-2xl p-8">
+          <div class="text-4xl mb-4">🎯</div>
+          <h2 class="font-display text-2xl font-bold mb-4">Misión</h2>
+          <p class="text-white/80 leading-relaxed">
+            Ser el socio estratégico de la industria boliviana en el comercio mayorista de minerales, ofreciendo productos de alta calidad, confiabilidad y respaldo técnico especializado, contribuyendo al desarrollo económico del país.
+          </p>
+        </div>
+        <div class="bg-[#1A1A1A] text-white rounded-2xl p-8">
+          <div class="text-4xl mb-4">🔭</div>
+          <h2 class="font-display text-2xl font-bold mb-4">Visión</h2>
+          <p class="text-white/80 leading-relaxed">
+            Consolidarnos como la empresa líder en comercio de minerales en Bolivia, reconocida por su excelencia operacional, integridad empresarial y compromiso con el desarrollo sostenible del sector minero nacional.
+          </p>
+        </div>
+        <div class="bg-[#C9A84C] text-white rounded-2xl p-8">
+          <div class="text-4xl mb-4">⚖️</div>
+          <h2 class="font-display text-2xl font-bold mb-4">Propósito</h2>
+          <p class="text-white/80 leading-relaxed">
+            Impulsar el aprovechamiento responsable de los recursos minerales bolivianos, generando valor para nuestros clientes, colaboradores y las comunidades donde operamos, con estricto respeto al medioambiente.
+          </p>
+        </div>
+      </div>
+
+      <!-- Valores -->
+      <div class="text-center mb-12">
+        <SectionTitle
+          eyebrow="Nuestros Valores"
+          title="Los principios que <span class='text-[#C41230]'>nos guían</span>"
+        />
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        {values.map(v => (
+          <div class="text-center p-5 rounded-xl hover:bg-[#F8F8F8] transition-colors group">
+            <div class="text-4xl mb-3">{v.icon}</div>
+            <h3 class="font-bold text-[#1A1A1A] text-sm mb-2 group-hover:text-[#C41230] transition-colors">{v.title}</h3>
+            <p class="text-[#718096] text-xs leading-relaxed">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="py-24 bg-[#F8F8F8]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <SectionTitle
+          eyebrow="Nuestra Trayectoria"
+          title="Línea de <span class='text-[#C41230]'>tiempo</span>"
+        />
+      </div>
+
+      <div class="relative">
+        <!-- Center line -->
+        <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-[#E2E8F0] -translate-x-1/2 hidden md:block"></div>
+
+        <div class="space-y-8">
+          {timeline.map((event, i) => (
+            <div class:list={['flex gap-8 items-center', i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse', 'flex-col md:flex-row']}>
+              <div class="flex-1 md:text-right">
+                {i % 2 === 0 ? (
+                  <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:border-[#C41230]/30 hover:shadow-md transition-all">
+                    <div class="text-[#C41230] font-black text-lg mb-2">{event.year}</div>
+                    <h3 class="font-bold text-[#1A1A1A] mb-2">{event.title}</h3>
+                    <p class="text-[#718096] text-sm leading-relaxed">{event.desc}</p>
+                  </div>
+                ) : (
+                  <div class="hidden md:block"></div>
+                )}
+              </div>
+              <!-- Dot -->
+              <div class="hidden md:flex w-5 h-5 bg-[#C41230] rounded-full border-4 border-white shadow-md shrink-0 z-10"></div>
+              <div class="flex-1">
+                {i % 2 !== 0 ? (
+                  <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:border-[#C41230]/30 hover:shadow-md transition-all">
+                    <div class="text-[#C41230] font-black text-lg mb-2">{event.year}</div>
+                    <h3 class="font-bold text-[#1A1A1A] mb-2">{event.title}</h3>
+                    <p class="text-[#718096] text-sm leading-relaxed">{event.desc}</p>
+                  </div>
+                ) : (
+                  <div class="hidden md:block"></div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Oruro Section -->
+  <section id="bolivia" class="py-24 bg-[#C41230] relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10"
+      style="background-image: radial-gradient(circle at 20% 50%, white 0%, transparent 60%);">
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex items-center justify-center gap-3 mb-6">
+          <span class="h-px w-12 bg-white/50"></span>
+          <span class="text-white/80 text-xs font-bold tracking-[0.3em] uppercase">Identidad</span>
+          <span class="h-px w-12 bg-white/50"></span>
+        </div>
+        <h2 class="font-display text-4xl sm:text-5xl font-bold text-white mb-6">
+          Orgullosamente <span class="text-[#C9A84C]">Orureños</span>
+        </h2>
+        <p class="text-white/80 text-xl leading-relaxed mb-8">
+          Oruro, la capital histórica de la minería boliviana, es más que nuestra sede: es nuestra identidad. Desde estas tierras ricas en minerales, construimos el futuro del sector minero nacional.
+        </p>
+        <p class="text-white/70 leading-relaxed max-w-3xl mx-auto mb-10">
+          Con más de 400 años de tradición minera, Oruro representa el epicentro de la riqueza mineral de Bolivia. Plata, estaño, zinc y otros minerales que forjaron la historia económica del país emergen de sus entrañas. Somos herederos de esa tradición y guardianes de su futuro responsable.
+        </p>
+        <div class="flex flex-wrap justify-center gap-8">
+          {[
+            { value: '400+', label: 'Años de tradición minera' },
+            { value: '6', label: 'Minerales estratégicos' },
+            { value: '#1', label: 'Región minera de Bolivia' },
+          ].map(s => (
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl px-8 py-5">
+              <div class="text-white font-black text-3xl">{s.value}</div>
+              <div class="text-white/70 text-sm mt-1">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <SectionTitle
+          eyebrow="Nuestro Equipo"
+          title="Las personas que hacen <span class='text-[#C41230]'>posible</span> la excelencia"
+        />
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+        {team.map(member => (
+          <div class="text-center group">
+            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-[#1A1A1A] group-hover:bg-[#C41230] flex items-center justify-center mx-auto mb-4 transition-colors">
+              <span class="text-white font-black text-xl">{member.initials}</span>
+            </div>
+            <h3 class="font-bold text-[#1A1A1A] text-sm leading-tight">{member.name}</h3>
+            <p class="text-[#C41230] text-xs mt-1">{member.position}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
