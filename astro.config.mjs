@@ -1,30 +1,21 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import vue from '@astrojs/vue';
-import sitemap from '@astrojs/sitemap';
-import tailwindcss from '@tailwindcss/vite';
-
-import node from '@astrojs/node';
+import { defineConfig } from "astro/config";
+import vue from "@astrojs/vue";
+import sitemap from "@astrojs/sitemap";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  site: 'https://mineracordilleradelsur.com.bo',
+  site: "https://mcs.com.bo",
 
-  integrations: [
-    vue({ appEntrypoint: '/src/lib/vue-app.ts' }),
-    sitemap(),
-  ],
+  integrations: [vue({ appEntrypoint: "/src/lib/vue-app.ts" }), sitemap()],
 
   vite: {
     plugins: [tailwindcss()],
   },
 
   image: {
-    remotePatterns: [{ protocol: 'https' }],
+    remotePatterns: [{ protocol: "https" }],
   },
 
-  output: 'server',
-
-  adapter: node({
-    mode: 'standalone',
-  }),
+  output: "static",
 });

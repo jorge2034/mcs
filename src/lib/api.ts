@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { LMEPrice, NewsItem, Service, Mineral, Client, ContactForm } from '../types';
+import type { LMEPrice, Service, Mineral, Client, ContactForm } from '../types';
 
 const API_BASE = import.meta.env.PUBLIC_API_URL || 'http://localhost:8000/api';
 
@@ -15,26 +15,6 @@ export async function fetchLME(): Promise<LMEPrice[]> {
     return data.data ?? data;
   } catch {
     return [];
-  }
-}
-
-export async function fetchNews(page = 1, category?: string): Promise<{ data: NewsItem[]; total: number }> {
-  try {
-    const params: Record<string, unknown> = { page };
-    if (category) params.category = category;
-    const { data } = await api.get('/news', { params });
-    return data;
-  } catch {
-    return { data: [], total: 0 };
-  }
-}
-
-export async function fetchNewsBySlug(slug: string): Promise<NewsItem | null> {
-  try {
-    const { data } = await api.get(`/news/${slug}`);
-    return data.data ?? data;
-  } catch {
-    return null;
   }
 }
 

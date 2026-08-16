@@ -19,13 +19,6 @@ const values = [
   { icon: '🏔', title: 'Identidad Boliviana', desc: 'Orgullosamente bolivianos, forjados en la tradición minera de Oruro.' },
   { icon: '👥', title: 'Compromiso Social', desc: 'Generamos desarrollo y bienestar en las comunidades donde operamos.' },
 ];
-
-const team = [
-  { name: 'Ing. Roberto Mamani', position: 'Gerente General', initials: 'RM' },
-  { name: 'Lic. Carmen Quispe', position: 'Directora Comercial', initials: 'CQ' },
-  { name: 'Ing. José Flores', position: 'Jefe de Operaciones', initials: 'JF' },
-  { name: 'Ing. Ana Torrez', position: 'Control de Calidad', initials: 'AT' },
-];
 ---
 
 <BaseLayout
@@ -180,29 +173,6 @@ const team = [
             </div>
           ))}
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Team -->
-  <section class="py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14">
-        <SectionTitle
-          eyebrow="Nuestro Equipo"
-          title="Las personas que hacen <span class='text-[#C41230]'>posible</span> la excelencia"
-        />
-      </div>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
-        {team.map(member => (
-          <div class="text-center group">
-            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-[#1A1A1A] group-hover:bg-[#C41230] flex items-center justify-center mx-auto mb-4 transition-colors">
-              <span class="text-white font-black text-xl">{member.initials}</span>
-            </div>
-            <h3 class="font-bold text-[#1A1A1A] text-sm leading-tight">{member.name}</h3>
-            <p class="text-[#C41230] text-xs mt-1">{member.position}</p>
-          </div>
-        ))}
       </div>
     </div>
   </section>

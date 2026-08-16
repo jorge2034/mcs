@@ -22,8 +22,10 @@ const {
 } = Astro.props;
 
 const siteName = 'Minera La Cordillera del Sur';
+const siteUrl = 'https://mcs.com.bo';
 const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
 const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site ?? siteUrl);
 ---
 
 <!doctype html>
@@ -35,14 +37,14 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site);
 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    {noIndex && <meta name="robots" content="noindex,nofollow" />}
+    <meta name="robots" content={noIndex ? 'noindex,nofollow' : 'index,follow'} />
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:image" content={ogImage} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content={siteName} />
     <meta property="og:locale" content="es_BO" />
@@ -51,10 +53,11 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(image, Astro.site)} />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Google Fonts -->
@@ -66,26 +69,29 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site);
     />
 
     <!-- Schema.org -->
-    <script type="application/ld+json">
-      {JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Minera La Cordillera del Sur",
-        "url": "https://mineracordilleradelsur.com.bo",
-        "logo": "https://mineracordilleradelsur.com.bo/images/logo.png",
-        "description": description,
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Oruro",
-          "addressCountry": "BO"
-        },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "customer service",
-          "availableLanguage": "Spanish"
-        }
-      })}
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": siteName,
+      "url": siteUrl,
+      "logo": `${siteUrl}/images/logo.png`,
+      "description": description,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Oruro",
+        "addressCountry": "BO"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "info@mcs.com.bo",
+        "availableLanguage": "Spanish"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Bolivia"
+      }
+    })} />
   </head>
   <body class="bg-white text-[#1A1A1A] antialiased">
     <Navbar />

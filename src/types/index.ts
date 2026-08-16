@@ -27,21 +27,6 @@ export interface LMEPrice {
   time: string;
 }
 
-export interface NewsItem {
-  id: number;
-  title: string;
-  slug: string;
-  excerpt: string;
-  content: string;
-  image?: string;
-  category: string;
-  publishedAt: string;
-  author?: string;
-  tags?: string[];
-  documents?: Document[];
-  gallery?: string[];
-}
-
 export interface Client {
   id: number;
   name: string;

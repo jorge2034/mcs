@@ -1,0 +1,30 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+
+const mapEmbedSrc =
+  'https://www.google.com/maps?q=-17.9735994,-67.089714&hl=es&z=17&output=embed';
+const mapLink = 'https://maps.app.goo.gl/LmLztmoQ2q1h6qZM9';
+---
+
+<div class:list={['relative overflow-hidden aspect-video', className]}>
+  <iframe
+    src={mapEmbedSrc}
+    title="Ubicación de MCS — Minera La Cordillera del Sur, Oruro"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen
+    class="absolute inset-0 w-full h-full border-0"
+  ></iframe>
+  <a
+    href={mapLink}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="absolute bottom-3 right-3 z-10 bg-white/95 hover:bg-white text-[#1A1A1A] text-xs font-semibold px-3 py-1.5 rounded shadow-md transition-colors"
+  >
+    Abrir en Google Maps
+  </a>
+</div>

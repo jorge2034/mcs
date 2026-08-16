@@ -73,27 +73,8 @@ import minaImg from '../../assets/mina.jpg';
     </div>
   </div>
 
-  <!-- Stats Bar -->
-  <div class="absolute bottom-0 left-0 right-0 z-20 bg-[#C41230]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 sm:grid-cols-4 divide-x divide-white/20">
-        {[
-          { value: '10+', label: 'Años de experiencia' },
-          { value: '50+', label: 'Clientes activos' },
-          { value: '15+', label: 'Minerales comercializados' },
-          { value: 'ISO', label: 'Estándares de calidad' },
-        ].map(stat => (
-          <div class="py-4 px-6 text-center">
-            <div class="text-white font-black text-2xl leading-none">{stat.value}</div>
-            <div class="text-white/70 text-xs mt-1 uppercase tracking-widest">{stat.label}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-
   <!-- Scroll indicator -->
-  <div class="absolute bottom-24 right-8 z-20 hidden lg:flex flex-col items-center gap-2">
+  <div class="absolute bottom-10 right-8 z-20 hidden lg:flex flex-col items-center gap-2">
     <span class="text-white/40 text-xs tracking-widest uppercase" style="writing-mode: vertical-rl">Scroll</span>
     <div class="w-px h-12 bg-gradient-to-b from-white/40 to-transparent animate-pulse"></div>
   </div>

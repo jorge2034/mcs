@@ -1,6 +1,7 @@
 ---
 import SectionTitle from '../ui/SectionTitle.astro';
 import ContactForm from '../vue/ContactForm.vue';
+import GoogleMap from '../ui/GoogleMap.astro';
 ---
 
 <section class="py-24 bg-[#1A1A1A] relative overflow-hidden">
@@ -36,7 +37,7 @@ import ContactForm from '../vue/ContactForm.vue';
             {
               icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>`,
               label: 'Email',
-              value: 'info@cordilleradelsur.com.bo'
+              value: 'info@mcs.com.bo'
             },
           ].map(item => (
             <div class="flex gap-4 items-start">
@@ -51,15 +52,7 @@ import ContactForm from '../vue/ContactForm.vue';
           ))}
         </div>
 
-        <!-- Map placeholder -->
-        <div class="mt-8 rounded-xl overflow-hidden bg-[#2D2D2D] aspect-video flex items-center justify-center border border-white/10">
-          <div class="text-white/30 text-sm text-center">
-            <svg class="w-8 h-8 mx-auto mb-2 opacity-40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
-            </svg>
-            Google Maps — Oruro, Bolivia
-          </div>
-        </div>
+        <GoogleMap class="mt-8 rounded-xl border border-white/10" />
       </div>
 
       <!-- Form -->
